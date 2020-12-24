@@ -30,13 +30,6 @@ public class JobsService {
 		 
 	}
 	
-	public Jobs addJob(Long id,Jobs job) {
-		Employee employee = entityManager.find(Employee.class, id);
-		employee.setJob(job);
-		entityManager.merge(employee);
-		return job;
-		
-	}
 	public Jobs findByID(int id) {
 		return entityManager.find(Jobs.class, id);
 		

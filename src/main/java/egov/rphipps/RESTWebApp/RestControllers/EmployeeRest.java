@@ -28,7 +28,7 @@ import egov.rphipps.RESTWebApp.Service.JobsService;
 Created on : Dec 22, 2020
 */
 
-@Path("person")
+@Path("employees")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class EmployeeRest {
@@ -44,8 +44,7 @@ public class EmployeeRest {
 	@POST
 	public Response createEmployee(Employee employee){
 			employeeService.createEmployee(employee);
-			System.out.println(employee.toString());
-	       return Response.ok(employee).build();
+	       return Response.ok(employee).status(Status.CREATED).build();
 	      
 	       
 	    }
@@ -53,13 +52,13 @@ public class EmployeeRest {
 	 @Path("all") 
 	 @GET 
 	 public Response getAllEmployees(){
-		 return Response.ok(employeeService.getAllEmployees()).status(Status.FOUND).build();
+		 return Response.ok(employeeService.getAllEmployees()).build();
 	 }
 	 
 	 @Path("{id}") 
 	 @GET 
 	 public Response getEmployeeById(@PathParam("id") int id){
-		 return  Response.ok(employeeService.findByID(id)).status(Status.FOUND).build();
+		 return  Response.ok(employeeService.findByID(id)).build();
 	 }
 	 
 
