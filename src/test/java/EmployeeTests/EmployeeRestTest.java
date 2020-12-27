@@ -69,6 +69,7 @@ class EmployeeRestTest {
 		
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("/RESTWebApp/api/v1/employees/new");
+		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Employee --> {}", response.body().asString());
 		response
 		.then()
@@ -77,6 +78,7 @@ class EmployeeRestTest {
 		
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("/RESTWebApp/api/v1/employees/new");
+		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Employee -->  {}", response.body().asString());
 		response
 		.then()
@@ -96,11 +98,15 @@ class EmployeeRestTest {
 
 	}
 
+	/*
+	 * Test to retrieve an employee by Id by utilizing the exposed REST end point
+	 */
 	@Test
 	void testGetEmployeeById() {
 		int employeeId = 1;
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).when().get("/RESTWebApp/api/v1/employees/" + employeeId);
+		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Get Employee by ID --> {}", response.body().asString());
 		response
 		.then()

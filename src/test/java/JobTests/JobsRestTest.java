@@ -64,10 +64,14 @@ class JobsRestTest {
 		return payload;
 	}
 	
+	/*
+	 * Test to create a new employee by utilizing the exposed REST end point
+	 */
 	@Test
 	void testCreateJob() {
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("/RESTWebApp/api/v1/jobs/new");
+		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Job --> {}", response.body().asString());
 		response
 		.then()
@@ -76,6 +80,7 @@ class JobsRestTest {
 		
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("/RESTWebApp/api/v1/jobs/new");
+		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Job --> {}", response.body().asString());
 		response
 		.then()
@@ -84,6 +89,9 @@ class JobsRestTest {
 		
 	}
 
+	/*
+	 * Test to create add a job to an employee's description by utilizing the exposed REST end point
+	 */
 	@Test
 	void testEditEmployeeJob() {
 		int jobid = 2;
@@ -98,8 +106,9 @@ class JobsRestTest {
 	
 	}
 
-	
-
+	/*
+	 * Test to retrieve all jobs by utilizing the exposed REST end point
+	 */
 	@Test
 	void testGetAllJobs() {
 		// Store the HTTPS GET response to be used to extract details for validation
@@ -108,6 +117,9 @@ class JobsRestTest {
 		
 	}
 	
+	/*
+	 * Test to retrieve an employee by Id by utilizing the exposed REST end point
+	 */
 	@Test
 	void testGetJobById() {
 		int jobId = 2;
