@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotBlank;
 
 
 /*
@@ -20,7 +21,9 @@ Created on : Dec 22, 2020
 @NamedQuery(name = Employee.FIND_ALL_USERS, query = "select e from Employee e order by e.lastName")
 public class Employee extends AbstractEntity {
 
+	@NotBlank
 	private String firstName;
+	@NotBlank
 	private String lastName;
 	@JsonbDateFormat(value = "yyyy-MM-dd")
 	private LocalDate dateEmployed;

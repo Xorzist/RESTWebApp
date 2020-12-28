@@ -10,7 +10,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,7 +34,7 @@ Hamcrest
 RestAssured
 
 */
-
+@TestMethodOrder(OrderAnnotation.class)
 class JobsRestTest {
 	private RequestSpecification given = RestAssured.given();
 	private Response response;
@@ -45,7 +48,7 @@ class JobsRestTest {
 	 */
 	@BeforeAll
 	public static void setUp() {
-		RestAssured.baseURI = "http://localhost";
+		RestAssured.baseURI = "http://localhost/RESTWebApp/api/v1/";
 		RestAssured.port = 8080;
 		when(jobs.getTitle()).thenReturn("Programmer", "Project Manager");
 		when(jobs.getPosition()).thenReturn("mid", "senior");
@@ -68,9 +71,10 @@ class JobsRestTest {
 	 * Test to create a new employee by utilizing the exposed REST end point
 	 */
 	@Test
+	@Order(1)
 	void testCreateJob() {
 		// Store the HTTPS GET response to be used to extract details for validation
-		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("/RESTWebApp/api/v1/jobs/new");
+		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("jobs/new");
 		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Job --> {}", response.body().asString());
 		response
@@ -79,7 +83,7 @@ class JobsRestTest {
 		.body("title", equalTo("Programmer"));
 		
 		// Store the HTTPS GET response to be used to extract details for validation
-		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("/RESTWebApp/api/v1/jobs/new");
+		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("jobs/new");
 		//Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Job --> {}", response.body().asString());
 		response
@@ -94,9 +98,9 @@ class JobsRestTest {
 	 */
 	@Test
 	void testEditEmployeeJob() {
-		int jobid = 2;
+		int jobid = 4;
 		int employeeID=1;
-		response = given.contentType(ContentType.JSON).put("/RESTWebApp/api/v1/jobs/edit/employee/"+employeeID+
+		response = given.contentType(ContentType.JSON).put("jobs/edit/employee/"+employeeID+
 				"/job/"+jobid);
 		logger.info("Response Body for Edit Employee Job --> {}", response.body().asString());
 		response
@@ -112,7 +116,7 @@ class JobsRestTest {
 	@Test
 	void testGetAllJobs() {
 		// Store the HTTPS GET response to be used to extract details for validation
-		response = RestAssured.get("/RESTWebApp/api/v1/jobs/all");
+		response = RestAssured.get("jobs/all");
 		assertThat(response.getStatusCode(), is(200));
 		
 	}
@@ -122,10 +126,10 @@ class JobsRestTest {
 	 */
 	@Test
 	void testGetJobById() {
-		int jobId = 2;
+		int jobId = 4;
 		// Store the HTTPS GET response to be used to extract details for validation
-		response = given.contentType(ContentType.JSON).when().get("/RESTWebApp/api/v1/jobs/" + jobId);
-		logger.info("Response Body for Get Employee by ID --> {}", response.body().asString());
+		response = given.contentType(ContentType.JSON).when().get("jobs/" + jobId);
+		logger.info("Response Body for Get Job by ID --> {}", response.body().asString());
 		response
 		.then()
 		.statusCode(200).body("id", equalTo(jobId));

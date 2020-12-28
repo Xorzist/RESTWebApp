@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotBlank;
 
 /*
 @author rphipps
@@ -13,7 +14,10 @@ Created on : Dec 22, 2020
 @Entity
 @NamedQuery(name = Jobs.FIND_ALL_JOBS, query = "select j from Jobs j order by j.salary ")
 public class Jobs extends AbstractEntity {
+	
+	@NotBlank
 	private String title;
+	@NotBlank
 	private String position;
 	private int salary;
 	public static final String FIND_ALL_JOBS = "Jobs.findAllJobs";

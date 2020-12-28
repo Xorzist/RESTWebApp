@@ -1,0 +1,327 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Open API Documention",
+    "description": "This document serves to inform users on the avaialbel REST endpoits of our API and how to utilizes them.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/RESTWebApp/api/v1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "employee",
+      "description": "Operations available on Employees table"
+    },
+    {
+      "name": "job",
+      "description": "Operations available on Jobs table"
+    }
+  ],
+  "paths": {
+    "/employees/new": {
+      "post": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Create a new employee",
+        "requestBody": {
+          "description": "Employee object that should be sent in the request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Object succesfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/employees/all": {
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Displays all available employees",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/employees/{id}": {
+      "get": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Displays all available employees",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the employee to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2,
+              "minimum": 1,
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/jobs/new": {
+      "post": {
+        "tags": [
+          "job"
+        ],
+        "summary": "Create a new job",
+        "requestBody": {
+          "description": "Job object that should be sent in the request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Job"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Object succesfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/jobs/all": {
+      "get": {
+        "tags": [
+          "job"
+        ],
+        "summary": "Displays all available jobs",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponseArray"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    },
+    "/jobs/{id}": {
+      "get": {
+        "tags": [
+          "job"
+        ],
+        "summary": "Displays all available employees",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the job to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2,
+              "minimum": 1,
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Employee": {
+        "required": [
+          "firstName",
+          "lastName"
+        ],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Robbie"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Jones"
+          }
+        }
+      },
+      "EmployeeResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "dateEmployed": {
+            "type": "string",
+            "example": "2020-12-12"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Robbie"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Jones"
+          }
+        }
+      },
+      "Job": {
+        "required": [
+          "title",
+          "position",
+          "salary"
+        ],
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Programmer"
+          },
+          "position": {
+            "type": "string",
+            "example": "Senior"
+          },
+          "salary": {
+            "type": "integer",
+            "example": 5000
+          }
+        }
+      },
+      "JobResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 3
+          },
+          "title": {
+            "type": "string",
+            "example": "Programmer"
+          },
+          "position": {
+            "type": "string",
+            "example": "Senior"
+          },
+          "salary": {
+            "type": "integer",
+            "example": 5000
+          }
+        }
+      },
+      "JobResponseArray": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 3
+            },
+            "title": {
+              "type": "string",
+              "example": "Programmer"
+            },
+            "position": {
+              "type": "string",
+              "example": "Senior"
+            },
+            "salary": {
+              "type": "integer",
+              "example": 5000
+            }
+          }
+        }
+      }
+    }
+  }
+}
