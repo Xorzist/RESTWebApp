@@ -6,19 +6,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /*
 @author rphipps
 Created on : Dec 22, 2020
-*/
+
+ * Entity model for the Job table
+ */
 @Entity
 @NamedQuery(name = Jobs.FIND_ALL_JOBS, query = "select j from Jobs j order by j.salary ")
 public class Jobs extends AbstractEntity {
 	
-	@NotBlank
+	@NotBlank(message = "Title field cannot be left empty")
 	private String title;
-	@NotBlank
+	@NotBlank(message = "Position field cannot be left empty")
 	private String position;
+	@NotNull(message = "Salary field cannot be left empty")
 	private int salary;
 	public static final String FIND_ALL_JOBS = "Jobs.findAllJobs";
 	

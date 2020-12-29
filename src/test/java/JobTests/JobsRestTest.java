@@ -42,22 +42,22 @@ class JobsRestTest {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/*
-	 * Set up method to prepare the base URL, the port and Mock methods of the
-	 *  Jobs class to prepare it with test values
+	 * Set up method to prepare the base URL, the port and Mock methods of the Jobs
+	 * class to prepare it with test values
 	 * 
 	 */
 	@BeforeAll
 	public static void setUp() {
 		RestAssured.baseURI = "http://localhost/RESTWebApp/api/v1/";
 		RestAssured.port = 8080;
-		when(jobs.getTitle()).thenReturn("Programmer", "Project Manager");
-		when(jobs.getPosition()).thenReturn("mid", "senior");
-		when(jobs.getSalary()).thenReturn(200, 500);
+		when(jobs.getTitle()).thenReturn("Programmer", "Project Manager", "Architect");
+		when(jobs.getPosition()).thenReturn("mid", "senior", "Complex");
+		when(jobs.getSalary()).thenReturn(200, 500, 77777);
 	}
 
 	/*
-	 * Method to generate a HashMap object to be used as the JSON object for creating 
-	 * a Job
+	 * Method to generate a HashMap object to be used as the JSON object for
+	 * creating a Job
 	 */
 	private Map<String, Object> createPayLoad() {
 		Map<String, Object> payload = new HashMap<>();
@@ -66,7 +66,7 @@ class JobsRestTest {
 		payload.put("salary", jobs.getSalary());
 		return payload;
 	}
-	
+
 	/*
 	 * Test to create a new employee by utilizing the exposed REST end point
 	 */
@@ -75,39 +75,22 @@ class JobsRestTest {
 	void testCreateJob() {
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("jobs/new");
-		//Log response body of the request given at the Info log level
+		// Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Job --> {}", response.body().asString());
 		response
 		.then()
 		.statusCode(201)
 		.body("title", equalTo("Programmer"));
-		
+
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("jobs/new");
-		//Log response body of the request given at the Info log level
+		// Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Job --> {}", response.body().asString());
 		response
 		.then()
 		.statusCode(201)
 		.body("title", equalTo("Project Manager"));
-		
-	}
 
-	/*
-	 * Test to create add a job to an employee's description by utilizing the exposed REST end point
-	 */
-	@Test
-	void testEditEmployeeJob() {
-		int jobid = 4;
-		int employeeID=1;
-		response = given.contentType(ContentType.JSON).put("jobs/edit/employee/"+employeeID+
-				"/job/"+jobid);
-		logger.info("Response Body for Edit Employee Job --> {}", response.body().asString());
-		response
-		.then()
-		.statusCode(200)
-		.body("id", equalTo(employeeID));
-	
 	}
 
 	/*
@@ -118,22 +101,67 @@ class JobsRestTest {
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = RestAssured.get("jobs/all");
 		assertThat(response.getStatusCode(), is(200));
-		
+
 	}
-	
+
 	/*
 	 * Test to retrieve an employee by Id by utilizing the exposed REST end point
 	 */
 	@Test
 	void testGetJobById() {
-		int jobId = 4;
+		int jobId = 1;
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).when().get("jobs/" + jobId);
 		logger.info("Response Body for Get Job by ID --> {}", response.body().asString());
 		response
 		.then()
-		.statusCode(200).body("id", equalTo(jobId));
-		
+		.statusCode(200)
+		.body("id", equalTo(jobId));
+
+	}
+
+	/*
+	 * Test to update a job by Id by utilizing the exposed REST end point
+	 */
+	@Test
+	void testupdatejobById() {
+		int jobId = 1;
+		// Store the HTTPS GET response to be used to extract details for validation
+		response = given.contentType(ContentType.JSON).body(createPayLoad()).put("jobs/" + jobId);
+		// Log response body of the request given at the Info log level
+		logger.info("Response Body for update Job --> {}", response.body().asString());
+		response
+		.then()
+		.statusCode(200)
+		.body("title", equalTo("Architect"));
+
+	}
+
+	/*
+	 * Test to delete job by Id by utilizing the exposed REST end point
+	 */
+	@Test
+	void testdeletejobById() {
+		int jobId = 2;
+		response = RestAssured.get("jobs/"+jobId);
+		assertThat(response.getStatusCode(), is(200));
+	}
+
+	/*
+	 * Test to create add a job to an employee's description by utilizing the
+	 * exposed REST end point
+	 */
+	@Test
+	void testEditEmployeeJob() {
+		int jobid = 4;
+		int employeeID = 1;
+		response = given.contentType(ContentType.JSON).put("jobs/edit/employee/" + employeeID + "/job/" + jobid);
+		logger.info("Response Body for Edit Employee Job --> {}", response.body().asString());
+		response
+		.then()
+		.statusCode(200)
+		.body("id", equalTo(employeeID));
+
 	}
 
 }

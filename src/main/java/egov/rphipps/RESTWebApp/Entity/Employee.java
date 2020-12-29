@@ -16,14 +16,16 @@ import javax.validation.constraints.NotBlank;
 /*
 @author rphipps
 Created on : Dec 22, 2020
-*/
+
+ * Entity model for the Employee table
+ */
 @Entity
 @NamedQuery(name = Employee.FIND_ALL_USERS, query = "select e from Employee e order by e.lastName")
 public class Employee extends AbstractEntity {
 
-	@NotBlank
+	@NotBlank(message = "First Name field cannot be left empty")
 	private String firstName;
-	@NotBlank
+	@NotBlank(message = "Last Name field cannot be left empty")
 	private String lastName;
 	@JsonbDateFormat(value = "yyyy-MM-dd")
 	private LocalDate dateEmployed;

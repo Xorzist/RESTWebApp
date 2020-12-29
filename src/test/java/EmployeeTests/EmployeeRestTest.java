@@ -1,4 +1,5 @@
 package EmployeeTests;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -35,7 +36,7 @@ RestAssured
 */
 @TestMethodOrder(OrderAnnotation.class)
 class EmployeeRestTest {
-	
+
 	private RequestSpecification given = RestAssured.given();
 	private Response response;
 	static private Employee employee = mock(Employee.class);
@@ -43,20 +44,20 @@ class EmployeeRestTest {
 
 	/*
 	 * Set up method to prepare the base URL, the port and Mock methods of the
-	 *  Employee class to prepare it with test values
+	 * Employee class to prepare it with test values
 	 * 
 	 */
 	@BeforeAll
 	public static void setUp() {
 		RestAssured.baseURI = "http://localhost/RESTWebApp/api/v1/";
 		RestAssured.port = 8080;
-		when(employee.getFirstName()).thenReturn("Cathy","Jus");
-		when(employee.getLastName()).thenReturn("May","Values");
+		when(employee.getFirstName()).thenReturn("Cathy", "Green", "Mario");
+		when(employee.getLastName()).thenReturn("May", "Other-Mario", "Green");
 	}
 
 	/*
-	 * Method to generate a HashMap object to be used as the JSON object for creating an 
-	 * employee 
+	 * Method to generate a HashMap object to be used as the JSON object for
+	 * creating an employee
 	 */
 	private Map<String, Object> createPayLoad() {
 		Map<String, Object> payload = new HashMap<>();
@@ -70,25 +71,23 @@ class EmployeeRestTest {
 	 */
 	@Test
 	@Order(1)
+	@DisplayName("Create An Employee")
 	void testCreateEmployee() {
-		
+
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("employees/new");
-		//Log response body of the request given at the Info log level
+		// Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Employee --> {}", response.body().asString());
-		response
-		.then()
-		.statusCode(201)
-		.body("firstName", equalTo("Cathy"));
-		
+		response.then().statusCode(201).body("firstName", equalTo("Cathy"));
+
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("employees/new");
-		//Log response body of the request given at the Info log level
+		// Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Employee -->  {}", response.body().asString());
-		response
-		.then()
-		.statusCode(201)
-		.body("firstName", equalTo("Jus"));
+		response.
+		then().
+		statusCode(201).
+		body("firstName", equalTo("Green"));
 
 	}
 
@@ -109,16 +108,45 @@ class EmployeeRestTest {
 	 * Test to retrieve an employee by Id by utilizing the exposed REST end point
 	 */
 	@Test
-	@Order(3)
+	@DisplayName("Retrieve An Employe")
 	void testGetEmployeeById() {
 		int employeeId = 1;
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).when().get("employees/" + employeeId);
-		//Log response body of the request given at the Info log level
+		// Log response body of the request given at the Info log level
 		logger.info("Response Body for Get Employee by ID --> {}", response.body().asString());
+		response.
+		then().
+		statusCode(200).
+		body("id", equalTo(employeeId));
+	}
+	/*
+	 * Test to delete an employee by Id by utilizing the exposed REST end point
+	 */
+	@Test
+	@DisplayName("Delete An Employee")
+	void testdeleteEmployeeById() {
+		int employeeId = 2;
+		// Store the HTTPS GET response to be used to extract details for validation
+		response = RestAssured.delete("employees/"+employeeId);
+		assertThat(response.getStatusCode(), is(200));
+
+	}
+	/*
+	 * Test to update an employee by Id by utilizing the exposed REST end point
+	 */
+	@Test
+	@DisplayName("Update An Employee")
+	void testupdateEmployeeById() {
+		int employeeId = 1;
+		// Store the HTTPS GET response to be used to extract details for validation
+		response = given.contentType(ContentType.JSON).body(createPayLoad()).put("employees/" + employeeId);
+		// Log response body of the request given at the Info log level
+		logger.info("Response Body for Update Employee --> {}", response.body().asString());
 		response
 		.then()
-		.statusCode(200).body("id", equalTo(employeeId));
+		.statusCode(200)
+		.body("firstName", equalTo("Mario"));
 	}
 
 }

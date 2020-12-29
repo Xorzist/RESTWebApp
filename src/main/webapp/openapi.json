@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Open API Documention",
-    "description": "This document serves to inform users on the avaialbel REST endpoits of our API and how to utilizes them.",
-    "version": "1.0.0"
+    "description": "This document serves to inform readers of the syntax and how utilize the available REST endpoits of our API.",
+    "version": "1.0.3"
   },
   "servers": [
     {
@@ -68,7 +68,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/EmployeeResponse"
+                  "$ref": "#/components/schemas/EmployeeResponseArray"
                 }
               }
             }
@@ -85,7 +85,7 @@
         "tags": [
           "employee"
         ],
-        "summary": "Displays all available employees",
+        "summary": "Displays the details of the employee with the corresponding ID",
         "parameters": [
           {
             "name": "id",
@@ -110,6 +110,82 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "put": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Updates the employee with the corresponding ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the employee to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2,
+              "minimum": 1,
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Employee object that should be sent in the request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "employee"
+        ],
+        "summary": "Removes the selected employee with the corresponding ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the employee to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2,
+              "minimum": 1,
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
           },
           "400": {
             "description": "Syntax of the request sent was incorrect"
@@ -182,7 +258,7 @@
         "tags": [
           "job"
         ],
-        "summary": "Displays all available employees",
+        "summary": "Displays the details of the employee with the corresponding ID",
         "parameters": [
           {
             "name": "id",
@@ -207,6 +283,82 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "put": {
+        "tags": [
+          "job"
+        ],
+        "summary": "Updates the job contents with with the coresponding ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the job to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2,
+              "minimum": 1,
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Job object that should be sent in the request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Job"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Syntax of the request sent was incorrect"
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "job"
+        ],
+        "summary": "Removes the selected job with the correspdooning ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of the job to fetch",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "maximum": 2,
+              "minimum": 1,
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
           },
           "400": {
             "description": "Syntax of the request sent was incorrect"
@@ -253,6 +405,29 @@
           "lastName": {
             "type": "string",
             "example": "Jones"
+          }
+        }
+      },
+      "EmployeeResponseArray": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "dateEmployed": {
+              "type": "string",
+              "example": "2020-12-12"
+            },
+            "firstName": {
+              "type": "string",
+              "example": "Robbie"
+            },
+            "lastName": {
+              "type": "string",
+              "example": "Jones"
+            }
           }
         }
       },
