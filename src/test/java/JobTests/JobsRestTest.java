@@ -153,7 +153,7 @@ class JobsRestTest {
 	 */
 	@Test
 	void testEditEmployeeJob() {
-		int jobid = 4;
+		int jobid = 1;
 		int employeeID = 1;
 		response = given.contentType(ContentType.JSON).put("jobs/edit/employee/" + employeeID + "/job/" + jobid);
 		logger.info("Response Body for Edit Employee Job --> {}", response.body().asString());

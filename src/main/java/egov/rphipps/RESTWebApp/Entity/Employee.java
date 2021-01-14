@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 
 /*
@@ -43,7 +44,7 @@ public class Employee extends AbstractEntity {
 				+ ", job=" + job + "]";
 	}
 
-	@PrePersist
+	//@PrePersist
 	public void setDateEmployedToNow() {
 		setDateEmployed(LocalDate.now());
 	}
