@@ -64,9 +64,10 @@ public class EmployeeService {
 	/*
 	 * Method to trigger the entity manager to delete a specified entity by its ID
 	 */
-	public void deleteEmployee(int id) {
+	public List<Employee> deleteEmployee(int id) {
 		Employee employeetoDelete = findByID(id);
 		entityManager.remove(employeetoDelete);
+		return getAllEmployees();
 	}
 
 }

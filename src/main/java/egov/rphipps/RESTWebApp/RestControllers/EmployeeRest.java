@@ -72,8 +72,7 @@ public class EmployeeRest {
 	@Path("{id}")
 	@DELETE
 	public Response deleteEmployeeById(@PathParam("id") int id) {
-		employeeService.deleteEmployee(id);
-		return Response.ok().build();
+		return Response.ok(employeeService.deleteEmployee(id)).build();
 	}
 	/*
 	 * Method to handle a request to update an employee record by using its ID

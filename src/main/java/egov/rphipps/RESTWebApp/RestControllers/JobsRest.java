@@ -73,8 +73,8 @@ public class JobsRest {
 	 @Path("{id}") 
 	 @DELETE 
 	 public Response deletejobById(@PathParam("id") int id){
-		 jobsService.deleteJob(id);
-		 return  Response.ok().build();
+		 
+		 return  Response.ok(jobsService.deleteJob(id)).build();
 	 }
 	 /*
 		 * Method to handle a request to update a job record by using its ID
