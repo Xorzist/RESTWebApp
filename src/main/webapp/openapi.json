@@ -373,7 +373,8 @@
       "Employee": {
         "required": [
           "firstName",
-          "lastName"
+          "lastName",
+          "dateEmployed"
         ],
         "type": "object",
         "properties": {
@@ -384,6 +385,10 @@
           "lastName": {
             "type": "string",
             "example": "Jones"
+          },
+          "dateEmployed": {
+          	"type": "string",
+            "example": "2020-12-12"
           }
         }
       },
