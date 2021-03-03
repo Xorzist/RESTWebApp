@@ -29,10 +29,10 @@ import io.restassured.specification.RequestSpecification;
 Created on : Dec 23, 2020
 
 Tests Core Dependencies :
-JUnit
-Mockito
-Hamcrest
-RestAssured
+JUnit 5 ( Jupiter)
+Mockito (3.6.28)
+Hamcrest (1.3)
+RestAssured (3.0.3)
 */
 @TestMethodOrder(OrderAnnotation.class)
 class EmployeeRestTest {
@@ -78,7 +78,10 @@ class EmployeeRestTest {
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("employees/new");
 		// Log response body of the request given at the Info log level
 		logger.info("Response Body for Create Employee --> {}", response.body().asString());
-		response.then().statusCode(201).body("firstName", equalTo("Cathy"));
+		response.
+		then().
+		statusCode(201)
+		.body("firstName", equalTo("Cathy"));
 
 		// Store the HTTPS GET response to be used to extract details for validation
 		response = given.contentType(ContentType.JSON).body(createPayLoad()).post("employees/new");
