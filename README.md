@@ -3,7 +3,7 @@
 
 **This is a JEE (Jakarta Enterprise Edition) based project. This project  utilizes the specifications from  JAX-RS (Jakarta RESTful Web Services), JPA (Java Persistence API),JTA(Java Transaction API) and CDI (Context Dependency Injection).**
 
-**This project when successfully built and deployed unto a server will provide a RESTful Web service, capable of executing a set of CRUD(Create,Read,Update & Delete) operations. This service can be used as the back-end component to complent a front-end framework**
+**This project when successfully built and deployed unto a server will provide a RESTful Web service, capable of executing a set of CRUD(Create,Read,Update & Delete) operations. This service can be used as the back-end component to compliment a front-end framework**
 
 ---
 * This project utilizes Maven as its build automation tool,thus it has a POM attached that details all the necessarry dependencies for this project. 
