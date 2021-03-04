@@ -3,7 +3,19 @@
 
 **This is a JEE (Jakarta Enterprise Edition) based project. This project  utilizes the specifications from  JAX-RS (Jakarta RESTful Web Services), JPA (Java Persistence API),JTA(Java Transaction API) and CDI (Context Dependency Injection).**
 
-**This project when successfully built and deployed unto a server will provide a RESTful Web service, capable of executing a set of CRUD(Create,Read,Update & Delete) operations. This service can be used as the back-end component to compliment a front-end framework**
+**This project when successfully built and deployed unto a server will provide a RESTful Web service, capable of executing a set of CRUD(Create,Read,Update & Delete) operations. This service can be used as the back-end component for an Employee Management System**
+
+---
+
+**This RESTful Web service utilzes a simple persistence unit to simulate database storage. This service allows for :**
+* Creation of an employee record
+* Updating an employee's details
+* Retrieving a specific employee's details
+* Deletion of a specific employee record
+* Creation of a job for use by employees 
+* Updating job details
+* Retrieving the details of a spceific job record
+* Deletion of a job
 
 ---
 * This project utilizes Maven as its build automation tool,thus it has a POM attached that details all the necessarry dependencies for this project. 
