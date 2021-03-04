@@ -1,4 +1,4 @@
-package egov.rphipps.RESTWebApp;
+package legacydev.rphipps.RESTWebApp;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

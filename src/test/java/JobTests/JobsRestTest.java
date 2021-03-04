@@ -17,11 +17,11 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import egov.rphipps.RESTWebApp.Entity.Jobs;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import legacydev.rphipps.RESTWebApp.Entity.Jobs;
 
 /*
 @author rphipps

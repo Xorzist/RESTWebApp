@@ -1,4 +1,4 @@
-package egov.rphipps.RESTWebApp;
+package legacydev.rphipps.RESTWebApp;
 
 
 import javax.enterprise.inject.Produces;

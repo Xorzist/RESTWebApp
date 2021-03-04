@@ -1,4 +1,4 @@
-package egov.rphipps.RESTWebApp.RestControllers;
+package legacydev.rphipps.RESTWebApp.RestControllers;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -13,10 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import egov.rphipps.RESTWebApp.Entity.Employee;
-import egov.rphipps.RESTWebApp.Entity.Jobs;
-import egov.rphipps.RESTWebApp.Service.EmployeeService;
-import egov.rphipps.RESTWebApp.Service.JobsService;
+import legacydev.rphipps.RESTWebApp.Entity.Employee;
+import legacydev.rphipps.RESTWebApp.Entity.Jobs;
+import legacydev.rphipps.RESTWebApp.Service.EmployeeService;
+import legacydev.rphipps.RESTWebApp.Service.JobsService;
 
 /*
 @author rphipps

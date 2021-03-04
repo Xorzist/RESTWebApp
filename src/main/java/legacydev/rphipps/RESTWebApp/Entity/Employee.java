@@ -1,4 +1,4 @@
-package egov.rphipps.RESTWebApp.Entity;
+package legacydev.rphipps.RESTWebApp.Entity;
 
 import java.sql.Date;
 import java.time.LocalDate;

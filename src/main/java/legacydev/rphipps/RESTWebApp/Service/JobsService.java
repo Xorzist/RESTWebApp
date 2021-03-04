@@ -1,4 +1,4 @@
-package egov.rphipps.RESTWebApp.Service;
+package legacydev.rphipps.RESTWebApp.Service;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import egov.rphipps.RESTWebApp.Entity.Employee;
-import egov.rphipps.RESTWebApp.Entity.Jobs;
+import legacydev.rphipps.RESTWebApp.Entity.Employee;
+import legacydev.rphipps.RESTWebApp.Entity.Jobs;
 
 /*
 @author rphipps

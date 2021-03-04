@@ -18,11 +18,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import egov.rphipps.RESTWebApp.Entity.Employee;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import legacydev.rphipps.RESTWebApp.Entity.Employee;
 
 /*
 @author rphipps

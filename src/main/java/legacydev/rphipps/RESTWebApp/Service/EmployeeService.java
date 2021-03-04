@@ -1,4 +1,4 @@
-package egov.rphipps.RESTWebApp.Service;
+package legacydev.rphipps.RESTWebApp.Service;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
-import egov.rphipps.RESTWebApp.EntityManagerProducer;
-import egov.rphipps.RESTWebApp.Entity.Employee;
+import legacydev.rphipps.RESTWebApp.EntityManagerProducer;
+import legacydev.rphipps.RESTWebApp.Entity.Employee;
 
 /*
 @author rphipps
