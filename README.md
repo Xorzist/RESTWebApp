@@ -52,4 +52,4 @@ In order to get this project deployed and accessable ,the following sequence can
 # API Documentation :space_invader:
 **Once the application has been deployed and the server is running you should visit  the following URL http://localhost:8080/RESTWebApp/index.html. This page provides documentation on how to utilize the API and adheres to OAS 3.0 *(Open API specificaton, previosuly Swagger)*.**
 
-*The aforementioned page provides fully functional widgets that allow the execution of API calls that will provide you with realtime results and examples of how to utilizie the service.*
+*The aforementioned page provides fully functional widgets that allow the execution of API calls that will provide you with realtime results and examples of how to utilise the service.*
